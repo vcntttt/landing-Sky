@@ -1,0 +1,18 @@
+---
+import Layout from "../layouts/Layout.astro"
+---
+
+<Layout title="Contacto">
+    <section id="contact" class="bg-slate-800 m-8 text-white p-6 rounded-md">
+        <h2>Contacto</h2>
+        <form id="contact-form" class="flex flex-col gap-4">
+            <label for="name">Nombre</label>
+            <input id="name" type="text" placeholder="Nombre">
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="Email">
+            <label for="message">Mensaje</label>
+            <textarea id="message" name="message" cols="30" rows="10" placeholder="Mensaje"></textarea>
+            <button type="submit" class="bg-teal-500 text-white py-1 rounded-lg w-full hover:bg-blue-600">Enviar</button>
+        </form>
+    </section>
+</Layout>

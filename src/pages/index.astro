@@ -1,41 +1,15 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="index, follow">
-    <meta name="description" content="Software de punto de venta y gestión de inventario basado en la nube, especialmente diseñado para minoristas y empresas de e-commerce.">
-    <title>Sky Inventory</title>
-    <!-- Inter Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          fontFamily: {
-            inter: ["Inter", "sans-serif"],
-          },
-        }
-      }
-      </script>
-  <!-- Ionicons -->
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-  <!-- Mi js -->
-  <script src="scripts/index.js" defer></script>
-</head>
-<body class="font-inter h-screen overflow-y-hidden">
-    <main 
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Welcome to Astro.">
+	<main 
     class="snap-y snap-mandatory relative w-full h-screen overflow-y-auto overflow-x-hidden scroll-smooth bg-teal-500 text-white">
-    <?php include 'header.php'; ?>
       <section class="landing-section snap-center h-screen" data-header-color="white">
         <div class="h-screen p-24 flex flex-col items-center justify-center">
             <h2 class="text-3xl font-semibold">Sky Inventory</h2>
             <p class="text-slate-100">Inventario Optimizado, Éxito Multiplicado: Tus ventas en Buenas Manos</p>
-            <img id="logo" src="./img/logo-main.png" alt="logoPrincipal" width="342" height="330">
+            <img id="logo" src="logo-main.png" alt="logoPrincipal" width="342" height="330">
         </div>
       </section>
       <section class="landing-section snap-center h-screen bg-white text-black" data-header-color="black">
@@ -47,7 +21,7 @@
                       <p>SkyInventory es una solución integral basada en la nube, creada específicamente para gestionar inventarios y puntos de venta de minoristas y negocios e-commerce. Nuestra misión es simplificar la administración de tus inventarios y ventas, optimizando tus operaciones y ayudándote a enfocarte en lo que realmente importa: hacer crecer tu negocio.</p>
                     </div>
                     <aside class="flex justify-end">
-                      <img src="img/asideImg1.png" alt="img1" class="object-cover alig">
+                      <img src="/asideImg1.png" alt="img1" class="object-cover alig">
                     </aside>
           </div>
         </div>
@@ -68,7 +42,7 @@
                   </ul>
                 </div>
               <div class="flex flex-col gap-4">
-                <img src="./img/ejemplo.png" alt="ejemplo">
+                <img src="/ejemplo.png" alt="ejemplo">
               </div>
               <a id="btn" class="bg-teal-500 px-4 py-2 text-white text-center hover:bg-blue-600 " href="products.html">
                 Ver Servicios
@@ -85,7 +59,7 @@
                     <li>Maximización de la Rentabilidad</li>
                     <li>Gestión Simplificada de Operaciones</li>
                 </ul>
-                <aside><img src="./img/persona-grafiquito.jpeg" alt="img2"></aside>
+                <aside><img src="/persona-grafiquito.jpeg" alt="img2"></aside>
                 </div>
                 <hr>
                 <footer class="text-black text-center">
@@ -94,5 +68,4 @@
         </div>
       </section>
     </main>
-</body>
-</html>
+</Layout>

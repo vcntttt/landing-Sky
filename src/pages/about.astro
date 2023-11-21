@@ -1,37 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="index, follow">
-    <meta name="description" content="Software de punto de venta y gestión de inventario basado en la nube, especialmente diseñado para minoristas y empresas de e-commerce.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <title>Sky Inventory</title>
-        <!-- Inter Font -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          fontFamily: {
-            inter: ["Inter", "sans-serif"],
-          },
-        }
-      }
-      </script>
-  <!-- Ionicons -->
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-  <!-- Mi js -->
-<script src="scripts/about.js" defer></script>
-</head>
-<body>
-    <?php include "header.php";?>
+---
+import Layout from "../layouts/Layout.astro"
+---
+
+<Layout title="About">
     <section id="about">
         <div class="grid grid-cols-2 gap-8 m-8">
             <article id="teamHistory" class="flex flex-col gap-4">
@@ -57,9 +28,4 @@
             </article>
         </div>
     </section>
-    <hr>
-    <footer class="text-black text-center">
-        <p>Copyright © 2023 Sky Inventory. Todos los derechos reservados.</p>
-    </footer>
-</body>
-</html>
+</Layout>
