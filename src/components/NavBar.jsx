@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { NavLink } from "react-router-dom";
+import supabase from '../supabase/client';
 // me copie mi navbar de integracion xd
 export default function NavBar({styles}) {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -21,7 +22,17 @@ export default function NavBar({styles}) {
                 <li><NavLink className={({ isActive }) => isActive ? `font-bold ${defectStyle}` : `${defectStyle}`} to="/">Home</NavLink></li>
                 <li><NavLink className={({ isActive }) => isActive ? `font-bold ${defectStyle}` : `${defectStyle}`} to="/about">Sobre Nosotros</NavLink></li>
                 <li><NavLink className={({ isActive }) => isActive ? `font-bold ${defectStyle}` : `${defectStyle}`} to="/contact">Contacto</NavLink></li>
-                <li><NavLink className={({ isActive }) => isActive ? `font-bold ${defectStyle}` : `${defectStyle}`} to="/login">Iniciar Sesion</NavLink></li>
+                {/* {supabase.auth.onAuthStateChange((event, session) => {
+                    if (!session) {
+                        return (
+                            <li><NavLink className={({ isActive }) => isActive ? `font-bold ${defectStyle}` : `${defectStyle}`} to="/login">Login</NavLink></li>
+                        )
+                    } else {
+                        return (
+                            <li><NavLink className={({ isActive }) => isActive ? `font-bold ${defectStyle}` : `${defectStyle}`} to="/">Logout</NavLink></li>
+                        )
+                    }
+                })} */}
             </ul>
         </div>
     )

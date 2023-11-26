@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import client from '../supabase/client'
+import supabase from '../supabase/client'
 import { Toaster, toast } from "sonner";
 export default function LoginPage() {
     const { register, handleSubmit} = useForm();
@@ -7,7 +7,7 @@ export default function LoginPage() {
     const onLoginSubmit = handleSubmit( async (data) => {
         console.log(data)
         try {
-            const res = await client.auth.signInWithPassword({
+            const res = await supabase.auth.signInWithPassword({
                 email: data.email,
                 password: data.password
             })
@@ -20,7 +20,7 @@ export default function LoginPage() {
     const onRegisterSubmit = handleSubmit( async (data) => {
         console.log(data)
         try {
-            const res = await client.auth.signUp({
+            const res = await supabase.auth.signUp({
                 email: data.email,
                 password: data.password
             })
