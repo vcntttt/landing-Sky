@@ -48,3 +48,11 @@ export const addComment = async (data) => {
         console.error('Error al agregar el comentario : ', error);
     }
 }
+
+export const saveMsg = async (data) => {
+    try {
+        await supabase.from('messages').insert(data);
+    } catch (error) {
+        console.error('Error al agregar el mensaje : ', error);
+    }
+}
