@@ -3,11 +3,13 @@ import { toast } from "sonner";
 import { signInWithEmail } from "../../supabase/auth";
 import { useAuth } from "../../context/AuthContext";
 import SubmitBtn from "../SubmitBtn";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
   const { register, handleSubmit } = useForm();
   const { setAuth } = useAuth();
-
+  const navigate = useNavigate();
+  
   const onLoginSubmit = handleSubmit(async (data) => {
     console.log(data);
     try {
@@ -16,6 +18,9 @@ export default function LoginForm() {
         password: data.password,
       });
       toast.success("Iniciado con exito");
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
       if (res && res.data && res.data.user) {
         setAuth({ user: res.data.user, isAuth: true });
       }
@@ -31,11 +36,11 @@ export default function LoginForm() {
   return (
     <form
       onSubmit={onLoginSubmit}
-      className="flex flex-col  gap-2 mx-auto mt-16 mb-20 [&>input]:p-4 [&>input]:rounded"
+      className="flex flex-col gap-4 mx-auto my-18 [&>input]:p-4 [&>input]:rounded"
     >
       <input
         type="email"
-        placeholder="ejemplo@email.com"
+        placeholder="alberto@email.com"
         {...register("email", { required: true })}
       />
       <input

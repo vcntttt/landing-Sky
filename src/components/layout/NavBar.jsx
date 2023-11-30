@@ -6,7 +6,7 @@ export default function NavBar({styles}) {
     const [menuOpen, setMenuOpen] = useState(false);
     const {user, isAuth, logOut} = useAuth();
     const defectStyle = "underline hover:font-bold";
-    
+
     return (
         <div className={`flex flex-row justify-between items-center p-6 ${styles}`}>
             <button className="md:hidden mr-4" onClick={() => setMenuOpen(!menuOpen)}>
@@ -26,7 +26,7 @@ export default function NavBar({styles}) {
                 <li><NavLink className={({ isActive }) => isActive ? `font-bold ${defectStyle}` : `${defectStyle}`} to="/about">Sobre Nosotros</NavLink></li>
                 <li><NavLink className={({ isActive }) => isActive ? `font-bold ${defectStyle}` : `${defectStyle}`} to="/contact">Contacto</NavLink></li>
             </ul>
-            <ul className='flex gap-2'>
+            <ul className='flex gap-4'>
             <li>
                 <p>Hola, {user?.full_name || 'invitado'}</p>
             </li>

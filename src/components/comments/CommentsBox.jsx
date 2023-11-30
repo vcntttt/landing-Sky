@@ -1,15 +1,15 @@
 import Comment from "./Comment";
 
-export default function CommentsBox({data}) {
+export default function CommentsBox({data, update}) {
   return (
-    <div>
-      {data.lenght >= 0 ? (
+    <main className="flex flex-col gap-2 mx-auto my-18 w-full">
+      {data.length >= 0 ? (
         data.map((item) => (
-          <Comment key={item.id} item={item} />
+          <Comment key={item.id} item={item} update={update}/>
         ))
       ): (
         <p>No hay comentarios</p>
       )}
-    </div>
+    </main>
   )
 }

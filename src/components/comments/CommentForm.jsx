@@ -1,35 +1,70 @@
 import { useForm } from "react-hook-form"
-import supabase from "../../supabase/client"
 import { useAuth } from "../../context/AuthContext"
 import SubmitBtn from "../SubmitBtn"
-export default function CommentForm() {
-    const {register, handleSubmit} = useForm()
+import { toast } from 'sonner'
+import { addComment, updateComment } from "../../supabase/data"
+import { useEffect } from "react"
+
+export default function CommentForm({commentToEdit, update, setUpdating=() => {}}) {
+    const {register, handleSubmit, reset, setValue, formState: {isSubmitSuccessful}} = useForm()
     const {user} = useAuth()
-    const onSubmit = handleSubmit(async (data) => {
-        try {
-            const res = await supabase.from("comments").insert({
-                userID: user.id,
-                text: data.comment,
-                userName: user.full_name,
-                plan : 0
-                // plan : 0 => comentario general
-                // plan : 1 => comentario de plan 1
-                // plan : 2 => comentario de plan 2
-                // plan : 3 => comentario de plan 3  
-            })
-            console.log(res)
-        } catch (error) {
-            console.error(error)
+
+    useEffect(() => {
+        if (commentToEdit) {
+            setValue('comment', commentToEdit.text)
         }
+    },[commentToEdit, setValue])
+
+    const onSubmit = handleSubmit(async (data) => {
+        let commentData = {
+            id: commentToEdit ? commentToEdit.id : null,
+            userID: user.id,
+            userName: user.full_name,
+            text: data.comment,
+            plan : 0
+        };
+            if (commentToEdit){
+                toast.promise(updateComment(commentData), {
+                    loading: 'Actualizando...',
+                    success: () => {
+                        update()
+                        return 'Comentario actualizado'
+                    },
+                    error: "Error al actualizar"
+                })
+            } else {
+                if (!commentToEdit) {
+                    commentData = {
+                        userID: user.id,
+                        userName: user.full_name,
+                        text: data.comment,
+                        plan : 0
+                    }
+                }
+                toast.promise(addComment(commentData), {
+                    loading: 'Agregando...',
+                    success: () => {
+                        update()
+                        return 'Comentario agregado'
+                    },
+                    error: "Error al agregar"
+                })
+            }
     })
+
+    useEffect(() => {
+        if (isSubmitSuccessful) {
+            reset()
+            setUpdating(false)
+        }
+    }, [isSubmitSuccessful, reset])
+
   return (
-    <div className="">
         <form
-        className="flex flex-col gap-2"
+        className="flex flex-col gap-8 mx-auto my-18 [&>input]:p-4 [&>input]:rounded"
         onSubmit={onSubmit}>
-            <textarea className="p-4" placeholder="comment" {...register("comment")} />
+            <textarea className="p-4" placeholder="Excelente servicio" {...register("comment")} />
             <SubmitBtn/>
         </form>
-    </div>
   )
 }

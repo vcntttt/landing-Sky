@@ -33,6 +33,8 @@ export const AuthProvider = ({children}) => {
 
   const logOut = () => {
     supabase.auth.signOut()
+    setUser(null)
+    setIsAuth(false)
   }
 
   return (

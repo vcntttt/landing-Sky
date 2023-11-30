@@ -3,10 +3,12 @@ import { signUpWithEmail, updateProfile } from "../../supabase/auth";
 import { toast } from "sonner";
 import { useAuth } from "../../context/AuthContext";
 import SubmitBtn from "../SubmitBtn";
+import { useNavigate } from "react-router-dom";
 
 export default function RegisterForm() {
   const { register, handleSubmit } = useForm();
   const { setAuth } = useAuth();
+  const navigate = useNavigate();
 
   const onRegisterSubmit = handleSubmit(async (data) => {
     console.log(data);
@@ -25,6 +27,9 @@ export default function RegisterForm() {
         await updateProfile(dataProfile);
       }
       toast.success("Registrado con exito");
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
       if (res && res.data && res.data.user) {
         setAuth({ user: res.data.user, isAuth: true });
       }
@@ -40,12 +45,12 @@ export default function RegisterForm() {
   return (
     <form
       onSubmit={onRegisterSubmit}
-      className="flex flex-col  gap-2 mx-auto mt-16 mb-20 [&>input]:p-4 [&>input]:rounded"
+      className="flex flex-col gap-4 mx-auto my-18 [&>input]:p-4 [&>input]:rounded"
     >
-      <input type="text" placeholder="Nombre" {...register("name")} />
+      <input type="text" placeholder="Alberto..." {...register("name")} />
       <input
         type="email"
-        placeholder="ejemplo@email.com"
+        placeholder="alberto@email.com"
         {...register("email")}
       />
       <input

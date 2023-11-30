@@ -42,22 +42,3 @@ export const fetchUserProfile = async (userId) => {
         console.error('Error al obtener el perfil : ', error);
     }
 }
-
-export const fetchComments = async () => {
-    try {
-        const res = await supabase.from('comments').select('*')
-        // console.log(res)
-        return res;
-    } catch (error) {
-        console.error(error)
-    }
-}
-
-export const fetchPlanes = async () => {
-    try {
-        const res = await supabase.from('planes').select('*')
-        return res.data;
-    } catch (error) {
-        console.error(error)
-    }
-}
