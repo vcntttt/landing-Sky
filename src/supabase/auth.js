@@ -37,7 +37,7 @@ export const fetchUserProfile = async (userId) => {
         .eq('id', userId)
         .single();
         // console.log(res.data.full_name)
-        return res.data.full_name;
+        return res.data;
     } catch (error) {
         console.error('Error al obtener el perfil : ', error);
     }

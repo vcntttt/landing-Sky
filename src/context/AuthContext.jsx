@@ -24,7 +24,8 @@ export const AuthProvider = ({children}) => {
       if (userName){
         const updatedUser = {
           ...user,
-          full_name: userName
+          full_name: userName.full_name,
+          isAdmin : userName.isAdmin
         }
         setUser(updatedUser)
       }

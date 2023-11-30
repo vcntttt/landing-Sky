@@ -1,7 +1,7 @@
 
-export default function Section({children}) {
+export default function Section({children, style}) {
   return (
-        <section className="h-[80vh] flex flex-col items-center justify-center">
+        <section className={`md:min-h-[80vh] h-auto flex flex-col ${style}`}>
         {children}
         </section>
   )

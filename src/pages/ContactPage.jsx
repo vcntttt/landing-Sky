@@ -1,19 +1,42 @@
+import { useForm } from "react-hook-form"
+import { toast, Toaster} from "sonner";
+import SubmitBtn from "../components/SubmitBtn";
+import { useAuth } from "../context/AuthContext";
+import { saveMsg } from "../supabase/data";
+
 export default function ContactPage() {
+  const {register, handleSubmit} = useForm()
+  const {user} = useAuth()
+
+  const onSubmit = handleSubmit((data) => {
+    if (!user) {
+      toast.error('Debes iniciar sesión')
+      return
+    }
+      toast.promise(saveMsg(
+        {
+          text: data.msg,
+          userID: user.id,
+          userName: user.full_name
+        }
+      ), {
+        loading: 'Enviando...',
+        success: () => 'Mensaje enviado, pronto nos pondremos en contacto!',
+        error: 'Error al enviar'
+      })
+  })
     return (
       <main className="m-4 flex gap-2 flex-col max-w-7xl justify-center mx-auto">
-        <h1>ContactPage</h1>
         <section id="contact" className="bg-slate-800 m-8 text-white p-6 rounded-md">
-            <h2>Contacto</h2>
-            <form id="contact-form" className="flex flex-col gap-4">
-                <label htmlFor="name">Nombre</label>
-                <input id="name" type="text" placeholder="Nombre"/>
-                <label htmlFor="email">Email</label>
-                <input id="email" type="email" placeholder="Email"/>
-                <label htmlFor="message">Mensaje</label>
-                <textarea id="message" name="message" cols="30" rows="10" placeholder="Mensaje"></textarea>
-                <button type="submit" className="bg-teal-500 text-white py-1 rounded-lg w-full hover:bg-blue-600">Enviar</button>
-            </form>
+          <h1 className="text-2xl py-4">Contacto</h1>
+            <form
+        className="flex flex-col gap-8 mx-auto my-18 [&>input]:p-4 [&>input]:rounded"
+        onSubmit={onSubmit}>
+            <textarea className="p-4" placeholder="Buenas tardes..." {...register("msg")} />
+            <SubmitBtn/>
+        </form>
         </section>
+        <Toaster richColors position="top-center" duration={3000}/>
       </main>
     )
   }

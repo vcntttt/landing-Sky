@@ -25,6 +25,11 @@ export default function NavBar({styles}) {
                 <li><NavLink className={({ isActive }) => isActive ? `font-bold ${defectStyle}` : `${defectStyle}`} to="/products">Productos</NavLink></li>
                 <li><NavLink className={({ isActive }) => isActive ? `font-bold ${defectStyle}` : `${defectStyle}`} to="/about">Sobre Nosotros</NavLink></li>
                 <li><NavLink className={({ isActive }) => isActive ? `font-bold ${defectStyle}` : `${defectStyle}`} to="/contact">Contacto</NavLink></li>
+                {
+                    user?.isAdmin && (
+                        <li><NavLink className={({ isActive }) => isActive ? `font-bold ${defectStyle}` : `${defectStyle}`} to="/admin/msg">Mensajes</NavLink></li>
+                    )
+                    }
             </ul>
             <ul className='flex gap-4'>
             <li>

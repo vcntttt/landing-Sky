@@ -56,3 +56,12 @@ export const saveMsg = async (data) => {
         console.error('Error al agregar el mensaje : ', error);
     }
 }
+
+export const fetchMessages = async () => {
+    try {
+        const res = await supabase.from('messages').select('*')
+        return res.data
+    } catch (error) {
+        console.error(error)
+    }
+}
