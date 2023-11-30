@@ -1,38 +1,28 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {AuthProvider} from "./context/AuthContext";
+import NavBar from "./components/layout/NavBar";
+import Footer from "./components/layout/Footer";
 import HomePage from "./pages/HomePage";
+import ProductsPage from "./pages/ProductsPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
-import NavBar from "./components/NavBar";
 import LoginPage from "./pages/LoginPage";
-// import { useEffect } from "react";
-// import supabase from "./supabase/client";
-import {AuthProvider} from "./context/AuthContext";
 
 function App() {
-  // const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   supabase.auth.onAuthStateChange((event, session) => {
-  //     if (!session) {
-  //       navigate('/login')
-  //     } else {
-  //       navigate('/')
-  //     }
-  //   })
-  // }, [])
-
   return (
+    <BrowserRouter>
     <AuthProvider>
-      <BrowserRouter>
         <NavBar />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/products" element={<ProductsPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/login" element={<LoginPage />} />
         </Routes>
-      </BrowserRouter>
+        <Footer />
     </AuthProvider>
+    </BrowserRouter>
   );
 }
 

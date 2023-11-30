@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { NavLink } from "react-router-dom";
-import supabase from '../supabase/client';
+import { useAuth } from '../../context/AuthContext';
 // me copie mi navbar de integracion xd
 export default function NavBar({styles}) {
     const [menuOpen, setMenuOpen] = useState(false);
+    const {user, isAuth, logOut} = useAuth();
     const defectStyle = "underline hover:font-bold";
+    
     return (
         <div className={`flex flex-row justify-between items-center p-6 ${styles}`}>
             <button className="md:hidden mr-4" onClick={() => setMenuOpen(!menuOpen)}>
@@ -20,19 +22,20 @@ export default function NavBar({styles}) {
             <ul className={`flex-grow md:flex md:flex-row flex-col gap-6 items-center
             ${menuOpen ? '' : 'hidden'} md:block`}>
                 <li><NavLink className={({ isActive }) => isActive ? `font-bold ${defectStyle}` : `${defectStyle}`} to="/">Home</NavLink></li>
+                <li><NavLink className={({ isActive }) => isActive ? `font-bold ${defectStyle}` : `${defectStyle}`} to="/products">Productos</NavLink></li>
                 <li><NavLink className={({ isActive }) => isActive ? `font-bold ${defectStyle}` : `${defectStyle}`} to="/about">Sobre Nosotros</NavLink></li>
                 <li><NavLink className={({ isActive }) => isActive ? `font-bold ${defectStyle}` : `${defectStyle}`} to="/contact">Contacto</NavLink></li>
-                {/* {supabase.auth.onAuthStateChange((event, session) => {
-                    if (!session) {
-                        return (
-                            <li><NavLink className={({ isActive }) => isActive ? `font-bold ${defectStyle}` : `${defectStyle}`} to="/login">Login</NavLink></li>
-                        )
-                    } else {
-                        return (
-                            <li><NavLink className={({ isActive }) => isActive ? `font-bold ${defectStyle}` : `${defectStyle}`} to="/">Logout</NavLink></li>
-                        )
-                    }
-                })} */}
+            </ul>
+            <ul className='flex gap-2'>
+            <li>
+                <p>Hola, {user?.full_name || 'invitado'}</p>
+            </li>
+            {isAuth ? (
+                    <li><button onClick={logOut} className={`${defectStyle}`}>Cerrar Sesion</button></li>
+                    ) : (
+                    <li><NavLink className={({ isActive }) => isActive ? `font-bold ${defectStyle}` : `${defectStyle}`} to="/login">Iniciar Sesion</NavLink></li>
+
+                )}
             </ul>
         </div>
     )

@@ -1,6 +1,6 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import supabase from "../supabase/client";
-
+import { fetchUserProfile } from "../supabase/auth";
 export const AuthContext = createContext();
 
 export const useAuth = () => {
@@ -15,23 +15,28 @@ export const AuthProvider = ({children}) => {
   const [user, setUser] = useState(null)
   const [isAuth, setIsAuth] = useState(false)
 
-  useEffect(() => {
-    supabase.auth.onAuthStateChange((event, session) => {
-        if (!session) {
-            setUser(null)
-        } else{
-            setUser(session.user)
+  const setAuth = async ({user,isAuth}) =>{
+    console.log('setAuth', user, isAuth)
+    setIsAuth(isAuth)
+    setUser(user)
+    if (user != null){
+      const userName = await fetchUserProfile(user.id)
+      if (userName){
+        const updatedUser = {
+          ...user,
+          full_name: userName
         }
-    })
-    console.log('user', user)
-  },[])
+        setUser(updatedUser)
+      }
+    } else{setUser(null)}
+    }
 
   const logOut = () => {
     supabase.auth.signOut()
   }
 
   return (
-    <AuthContext.Provider value={{user, setUser}}>
+    <AuthContext.Provider value={{user, isAuth, logOut, setAuth}}>
         {children}
     </AuthContext.Provider>
   )

@@ -1,6 +1,7 @@
 export default function AboutPage() {
     return (
-      <div className="text-3xl">About Page</div>
+      <main className="m-4 flex gap-2 flex-col max-w-7xl justify-center mx-auto">
+        About Page
+      </main>
     )
-  }
-  
+}

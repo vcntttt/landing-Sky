@@ -1,50 +1,88 @@
-import { useState } from "react"
-import Card from "../components/Card"
+// import { useAuth } from "../context/AuthContext"
+import Section from "../components/Section";
 export default function HomePage() {
-    const [name, setName] = useState('invitado')
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        setName(e.target[0].value)
-    }
+  // const {user} = useAuth()
 
   return (
-    <div className="m-10 flex gap-2 flex-col max-w-4xl justify-center mx-auto">
-        <h1 className="text-4xl">Hola, {name}</h1>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-2 mb-4">
-            <label htmlFor=""> Inserte su Nombre:</label>
-            <input type="text" />
-            <button type="submit" className="p-2 bg-slate-500 hover:bg-slate-700">Ingresar</button>
-        </form>
-        <h1 className="text-xl">No cache lo de que se tenga que relacionar con mis proyectos asi que puse autitos:</h1>
-        <Card>
-            <h1 className="text-xl font-semibold">Tesla Model S</h1>
-            <img src="https://img.remediosdigitales.com/55c7f7/tesla-model-s-2021/840_560.jpeg" alt="" />
+    <main className="m-4 flex gap-2 flex-col max-w-7xl justify-center mx-auto">
+      <Section>
+        <h2 className="text-3xl font-semibold">Sky Inventory</h2>
+        <p className="text-slate-100">
+          Inventario Optimizado, Éxito Multiplicado: Tus ventas en Buenas Manos
+        </p>
+        <img
+          id="logo"
+          src="logo-main.png"
+          alt="logoPrincipal"
+          width="342"
+          height="330"
+          className="hover:transform hover:scale-125 hover:transition hover:duration-300 hover:ease-in-out"
+        />
+      </Section>
+      <Section>
+        <h2 className="text-2xl font-semibold text-center">
+          Gestiona, Optimiza, Crece: Todo es posible con SkyInventory.
+        </h2>
+        <div className="grid grid-cols-2 justify-center mx-auto">
+          <div className="mx-4">
+            <h4 className="text-2xl font-normal mb-4">¿Qué Hacemos?</h4>
             <p>
-                El Tesla Model S es un sedan de lujo que ofrece comodidad, seguridad y un rendimiento impresionante, con una aceleracion que va de 0 a 96 km/h en 2.3 segundos.
+              SkyInventory es una solución integral basada en la nube, creada
+              específicamente para gestionar inventarios y puntos de venta de
+              minoristas y negocios e-commerce. Nuestra misión es simplificar la
+              administración de tus inventarios y ventas, optimizando tus
+              operaciones y ayudándote a enfocarte en lo que realmente importa:
+              hacer crecer tu negocio.
             </p>
-        </Card>
-        <Card>
-            <h1 className="text-xl font-semibold">Tesla Model 3</h1>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/2019_Tesla_Model_3_Performance_AWD_Front.jpg" alt="" />
-            <p>
-                El Tesla Model 3 se presenta como una opcion mas asequible dentro de la linea tesla, sin comprometer la seguridad, capaz de soportar hasta cuatro veces su peso en pruebas de choque. Aunque su aceleracion es ligeramente inferior al Model S, aun impresiona con 3.2 segundos de 0 a 96 km/h y ofrece una autonomia de entre 400 y 515 km.
-            </p>
-        </Card>
-        <Card>
-            <h1 className="text-xl font-semibold">Tesla Model X</h1>
-            <img src="https://hips.hearstapps.com/es.h-cdn.co/cades/contenidos/6584/section-hero.jpg" alt="" />
-            <p>El Tesla Model X es un SUV que combina espacio y potencia, ofreciento hasta 7 asientos para adultors y una aceleracion de 0 a 96 km/h en 2.6 segundos, convirtiendolo en uno de los SUV mas rapidos del mundo, Ademas posee puertas de ala de gaviota y una autonomia de hasta 560 kilometros.</p>
-        </Card>
-        <Card>
-            <img src="https://hips.hearstapps.com/hmg-prod/images/captura-de-pantalla-2022-08-12-a-las-13-11-19-1660302804.jpg?resize=980:*" alt="" />
-            <h1 className="text-xl font-semibold">Tesla Model Y</h1>
-            <p>Por ultimo el Tesla Model Y mantiene la versatilidad de la opcion de 7 asientos y es adecuado para una variedad de terrenos y condiciones climaticas. Con una aceleracion de 0 a 96 km/h en 3.5 segundos y una autonomia de 505 kilometros.</p>
-        </Card>
-        <Card>
-            <h1 className="text-xl font-semibold">Conclusión</h1>
-            <p>En conclusión, quiero un tesla</p>
-        </Card>
-    </div>
-  )
+          </div>
+          <aside className="flex justify-end">
+            <img src="asideImg1.png" alt="img1" className="object-cover" />
+          </aside>
+        </div>
+      </Section>
+      <Section>
+        <div className="grid grid-rows-[1fr,2fr,10fr,1fr] items-center gap-2">
+          <h1 className="text-3xl">¿Como lo hacemos?</h1>
+          <div className="grid grid-cols-2">
+            <ul className="ml-4 list-disc">
+              <li>Gestión de Inventario en Tiempo Real</li>
+              <li>Integración con Plataformas e-commerce</li>
+              <li>Herramientas Analíticas Avanzadas</li>
+            </ul>
+            <ul className="ml-4 list-disc">
+              <li>Gestión de Multiples Ubicaciones</li>
+              <li>Acceso Movil</li>
+              <li>Faltaria uno</li>
+            </ul>
+          </div>
+          <div className="flex flex-col gap-4">
+            <img src="ejemplo.png" alt="ejemplo" />
+          </div>
+          <a
+            id="btn"
+            className="bg-teal-500 px-4 py-2 text-white text-center hover:bg-blue-600 "
+            href="products.html"
+          >
+            Ver Servicios
+          </a>
+        </div>
+      </Section>
+      <Section>
+      <div className="grid grid-rows-[1fr,auto,1fr]">
+        <h2 className="text-2xl my-2">¿Por qué elegir SkyInventory?</h2>
+        <div className="grid grid-cols-2 items-center m-4">
+          <ul className="ml-4 list-disc">
+            <li>Optimización de la Reposición de Productos</li>
+            <li>Prevención de la Sobreventa</li>
+            <li>Maximización de la Rentabilidad</li>
+            <li>Gestión Simplificada de Operaciones</li>
+          </ul>
+          <aside>
+            <img src="persona-grafiquito.jpeg" alt="img2" />
+          </aside>
+        </div>
+      </div>
+      </Section>
+    </main>
+  );
 }
