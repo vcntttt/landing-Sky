@@ -1,10 +1,8 @@
 import { Toaster } from "sonner";
 import LoginForm from "../components/authForms/LoginForm";
 import RegisterForm from "../components/authForms/RegisterForm";
-// import { useAuth } from "../context/AuthContext";
 
 export default function LoginPage() {
-  // const { setUser } = useAuth();
   return (
     <main className="p-6 grid md:grid-cols-2 grid-cols-1 gap-6">
       <section>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 
 export default function AboutPage() {
+    // estado y fetch para obtener informacion del usuario de github
     const [githubUser, setGithubUser] = useState({})
     useEffect(() => {
        async function getGithubUser() {

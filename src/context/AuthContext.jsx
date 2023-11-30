@@ -3,6 +3,8 @@ import supabase from "../supabase/client";
 import { fetchUserProfile } from "../supabase/auth";
 export const AuthContext = createContext();
 
+// custom hook que devuelve el contexto
+
 export const useAuth = () => {
     const context = useContext(AuthContext);
     if (!context) {
@@ -12,9 +14,10 @@ export const useAuth = () => {
 }
 
 export const AuthProvider = ({children}) => {
+  // estados del contexto
   const [user, setUser] = useState(null)
   const [isAuth, setIsAuth] = useState(false)
-
+// control de autenticacion
   const setAuth = async ({user,isAuth}) =>{
     console.log('setAuth', user, isAuth)
     setIsAuth(isAuth)
@@ -31,7 +34,7 @@ export const AuthProvider = ({children}) => {
       }
     } else{setUser(null)}
     }
-
+ // cierre de sesion
   const logOut = () => {
     supabase.auth.signOut()
     setUser(null)
@@ -39,6 +42,7 @@ export const AuthProvider = ({children}) => {
   }
 
   return (
+    // retornamos el contexto para que todos los componentes puedan acceder
     <AuthContext.Provider value={{user, isAuth, logOut, setAuth}}>
         {children}
     </AuthContext.Provider>

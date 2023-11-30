@@ -7,7 +7,7 @@ import { saveMsg } from "../supabase/data";
 export default function ContactPage() {
   const {register, handleSubmit} = useForm()
   const {user} = useAuth()
-
+// en caso de que no estes logeado no te deja mandar el mensaje a la db
   const onSubmit = handleSubmit((data) => {
     if (!user) {
       toast.error('Debes iniciar sesión')

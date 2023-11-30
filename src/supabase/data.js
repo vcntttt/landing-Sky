@@ -1,4 +1,5 @@
 import supabase from "./client";
+// funciones que traen datos, actualizan y eliminan
 
 export const fetchComments = async () => {
     try {

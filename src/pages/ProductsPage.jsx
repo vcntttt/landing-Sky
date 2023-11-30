@@ -10,11 +10,12 @@ import Modal from "../components/comments/Modal";
 import PlanCard from "../components/Cards/PlanCard";
 
 export default function ProductsPage() {
-  const [comments, setComments] = useState([]);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [planes, setPlanes] = useState([]);
-  const { isAuth } = useAuth();
+  const [comments, setComments] = useState([]); // estado que almacena los comentarios
+  const [modalOpen, setModalOpen] = useState(false); // estado que controla el modal
+  const [planes, setPlanes] = useState([]); // estado que almacena los planes
+  const { isAuth } = useAuth(); // traemos el usuario
 
+// se define la funcion afuera del useEffect para poderla pasar como prompt
   const getComments = async () => {
     try {
       const res = await fetchComments();
@@ -34,9 +35,10 @@ export default function ProductsPage() {
       }
     }
     getComments();
+    // se llama aparte pq no se puede usar async dentro del useEffect
     getPlanes();
   }, []);
-
+  // control del modal
   const handleSubmit = () => {
     setModalOpen(true);
   };
@@ -46,6 +48,7 @@ export default function ProductsPage() {
       <h1 className="text-4xl py-2">Nuestros Productos</h1>
       <section className="bg-teal-800 rounded-md">
         <ul className="grid md:grid-cols-3 grid-cols-1 my-4">
+          {/* para cada plan, se genera una tarjeta */}
           {planes.map((plan) => (
             <PlanCard key={plan.id} plan={plan}/>
           ))}
@@ -58,6 +61,7 @@ export default function ProductsPage() {
         Agregar Comentario
       </button>
       <CommentsBox data={comments} update={() => getComments()} />
+      {/* control del modal, en caso de que el usuario no este autenticado mostrara el formulario para iniciar sesion y luego el formulario para crear un comentario */}
       {modalOpen && (
         <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
           {isAuth ? (

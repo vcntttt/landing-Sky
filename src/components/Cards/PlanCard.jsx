@@ -1,9 +1,11 @@
 import { toast } from "sonner"
 
 export default function PlanCard({plan}) {
+  // ajustamos el formato de la descripcion para que salga como una lista, en la db esta guardado a proposito con comas entre medio de cada una.
     let descriptionItems = plan.description.split(',').map((car,index) => (
         <li key={index}>{car.trim()}</li>
     ))
+  // Componente Card
   return (
     <li key={plan.id} 
     className="m-4 bg-slate-300 rounded-md text-black p-4 py-10 flex flex-col gap-2 justify-between">

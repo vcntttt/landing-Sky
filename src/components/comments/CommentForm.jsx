@@ -6,9 +6,10 @@ import { addComment, updateComment } from "../../supabase/data"
 import { useEffect } from "react"
 
 export default function CommentForm({commentToEdit, update, setUpdating=() => {}}) {
+    //implementacion de react hook form
     const {register, handleSubmit, reset, setValue, formState: {isSubmitSuccessful}} = useForm()
     const {user} = useAuth()
-
+    // se toma el valor del comentario y se guarda en el estado
     useEffect(() => {
         if (commentToEdit) {
             setValue('comment', commentToEdit.text)
@@ -16,6 +17,7 @@ export default function CommentForm({commentToEdit, update, setUpdating=() => {}
     },[commentToEdit, setValue])
 
     const onSubmit = handleSubmit(async (data) => {
+        // preparamos el objeto que se envia a supabase
         let commentData = {
             id: commentToEdit ? commentToEdit.id : null,
             userID: user.id,
@@ -23,6 +25,7 @@ export default function CommentForm({commentToEdit, update, setUpdating=() => {}
             text: data.comment,
             plan : 0
         };
+        // logica para editar o agregar un comentario
             if (commentToEdit){
                 toast.promise(updateComment(commentData), {
                     loading: 'Actualizando...',
@@ -33,6 +36,7 @@ export default function CommentForm({commentToEdit, update, setUpdating=() => {}
                     error: "Error al actualizar"
                 })
             } else {
+                // sacamos la id pq no puede ser nulo
                 if (!commentToEdit) {
                     commentData = {
                         userID: user.id,
@@ -51,7 +55,7 @@ export default function CommentForm({commentToEdit, update, setUpdating=() => {}
                 })
             }
     })
-
+// reseteo del formulario
     useEffect(() => {
         if (isSubmitSuccessful) {
             reset()

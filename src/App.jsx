@@ -10,7 +10,9 @@ import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
-    <BrowserRouter>
+    // enrutador (configurado para pillan)
+    <BrowserRouter basename="/~vrivera/desarrollo_web/landing-sky/">
+    {/* <BrowserRouter> */}
     <AuthProvider>
         <NavBar />
         <Routes>

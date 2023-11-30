@@ -1,5 +1,6 @@
 import supabase from "./client";
 
+// controlador de registro
 export const signUpWithEmail = async (data) => {
     let res;
     try {
@@ -10,7 +11,7 @@ export const signUpWithEmail = async (data) => {
         
     } return res;
 }
-
+// controlador para asignar el nombre del usuario
 export const updateProfile = async (data) => {
     try {
         await supabase.from('profiles').upsert(data, {returning : 'minimal'});
@@ -18,7 +19,7 @@ export const updateProfile = async (data) => {
         console.error('Error al actualizar el perfil : ', error);
     }
 }
-
+// controlador de inicio de sesion
 export const signInWithEmail = async ({email, password}) => {
     let res;
     try {
@@ -29,7 +30,7 @@ export const signInWithEmail = async ({email, password}) => {
     }
     return res;
 }
-
+// controlador para obtener el perfil
 export const fetchUserProfile = async (userId) => {
     try {
         const res = await supabase.from('profiles')

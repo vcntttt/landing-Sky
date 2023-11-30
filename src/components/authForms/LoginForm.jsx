@@ -6,21 +6,26 @@ import SubmitBtn from "../SubmitBtn";
 import { useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
-  const { register, handleSubmit } = useForm();
+  // Logica para iniciar sesion
+  const { register, handleSubmit } = useForm(); //implementacion de react hook form
   const { setAuth } = useAuth();
   const navigate = useNavigate();
   
   const onLoginSubmit = handleSubmit(async (data) => {
     console.log(data);
     try {
+      // Peticion
       const res = await signInWithEmail({
         email: data.email,
         password: data.password,
       });
+      // Notificacion
       toast.success("Iniciado con exito");
+      // Redireccion
       setTimeout(() => {
         navigate("/");
       }, 1000);
+      // Control de autenticacion
       if (res && res.data && res.data.user) {
         setAuth({ user: res.data.user, isAuth: true });
       }
